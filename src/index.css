@@ -1,0 +1,252 @@
+:root {
+  color-scheme: dark;
+  --bg: #0f0f14;
+  --surface: #1c1c24;
+  --text: #f2f2f5;
+  --muted: #9a9aa5;
+  --accent: #e63946;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, sans-serif;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: var(--surface);
+}
+
+.navbar a {
+  color: var(--text);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+}
+
+.app-content {
+  padding: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.hero__card {
+  position: relative;
+  display: block;
+  height: 260px;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--surface);
+  overflow: hidden;
+  text-decoration: none;
+  color: white;
+}
+
+.hero__card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.1) 60%);
+}
+
+.hero__badge {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  z-index: 1;
+}
+
+.hero__badge svg {
+  color: gold;
+}
+
+.hero__info {
+  position: absolute;
+  left: 0.9rem;
+  right: 0.9rem;
+  bottom: 0.8rem;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.hero__info strong {
+  font-size: 1.05rem;
+}
+
+.hero__info span {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.home__search {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: none;
+  margin: 1rem 0;
+  font-size: 1rem;
+}
+
+.home__grid,
+.my-list__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.movie-card {
+  color: var(--text);
+  text-decoration: none;
+  background: var(--surface);
+  border-radius: 8px;
+  overflow: hidden;
+  display: block;
+}
+
+.movie-card img {
+  width: 100%;
+  display: block;
+}
+
+.movie-card__info {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.movie-card__info span {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.title-details__header {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.title-details__header img {
+  width: 220px;
+  border-radius: 8px;
+}
+
+.title-details__actions {
+  display: flex;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.title-details__actions button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.provider-list {
+  list-style: none;
+  display: flex;
+  gap: 0.75rem;
+  padding: 0;
+}
+
+.provider-list li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+}
+
+.provider-list img {
+  width: 40px;
+  border-radius: 8px;
+}
+
+.rating-stars button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: gold;
+  font-size: 1.3rem;
+}
+
+.title-details__review textarea {
+  width: 100%;
+  min-height: 80px;
+  margin-top: 0.5rem;
+  border-radius: 6px;
+  border: none;
+  padding: 0.5rem;
+}
+
+.episode-tracker__seasons {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+  flex-wrap: wrap;
+}
+
+.episode-tracker__seasons button {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--muted);
+  border-radius: 6px;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+}
+
+.episode-tracker__seasons button.active {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.episode-tracker__list {
+  list-style: none;
+  padding: 0;
+}
+
+.my-list__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.my-list__item button {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--muted);
+  border-radius: 6px;
+  padding: 0.3rem;
+  cursor: pointer;
+}

@@ -45,6 +45,113 @@ export function getWatchProviders(mediaType, id) {
 export function getTrending() {
   return tmdbFetch("/trending/all/week");
 }
+export function getPopularMovies() {
+  return tmdbFetch("/movie/popular", {
+    include_adult: "false",
+    page: "1",
+  });
+}
+
+// Filmes de ação
+export function getActionMovies() {
+  return tmdbFetch("/discover/movie", {
+    with_genres: "28",
+    sort_by: "popularity.desc",
+    include_adult: "false",
+    page: "1",
+  });
+}
+
+// Filmes de comédia
+export function getComedyMovies() {
+  return tmdbFetch("/discover/movie", {
+    with_genres: "35",
+    sort_by: "popularity.desc",
+    include_adult: "false",
+    page: "1",
+  });
+}
+
+// Animes / animações
+export function getAnime() {
+  return tmdbFetch("/discover/tv", {
+    with_genres: "16",
+    with_origin_country: "JP",
+    sort_by: "popularity.desc",
+    include_adult: "false",
+    page: "1",
+  });
+}
+
+// Próximos lançamentos no cinema
+export function getUpcomingMovies() {
+  return tmdbFetch("/movie/upcoming", {
+    region: "BR",
+    page: "1",
+  });
+}
+
+// Próximos lançamentos - permite buscar várias páginas
+export function getUpcomingMoviesPage(page = 1) {
+  return tmdbFetch("/movie/upcoming", {
+    region: "BR",
+    page: String(page),
+  });
+}
+
+// Datas de lançamento de um filme por país
+export function getMovieReleaseDates(movieId) {
+  return tmdbFetch(`/movie/${movieId}/release_dates`);
+}
+
+// Procura as datas de cinema de um filme no Brasil
+export async function getBrazilCinemaDates(movieId) {
+  const data = await getMovieReleaseDates(movieId);
+
+  const brazil = (data.results || []).find(
+    (country) => country.iso_3166_1 === "BR"
+  );
+
+  if (!brazil) {
+    return [];
+  }
+
+  return (brazil.release_dates || [])
+    .filter(
+      (release) =>
+        release.type === 2 || release.type === 3
+    )
+    .map((release) => ({
+      date: release.release_date,
+      type: release.type,
+      note: release.note || "",
+    }))
+    .sort(
+      (a, b) =>
+        new Date(a.date) - new Date(b.date)
+    );
+}
+
+// Vídeos e trailers de filmes e séries
+export function getVideos(mediaType, id) {
+  return tmdbFetch(`/${mediaType}/${id}/videos`);
+}
+
+// Elenco de filmes e séries
+export function getCredits(mediaType, id) {
+  return tmdbFetch(`/${mediaType}/${id}/credits`);
+}
+
+// Busca os dados de um ator ou atriz
+export function getPersonDetails(personId) {
+  return tmdbFetch(`/person/${personId}`);
+}
+
+// Busca filmes e séries em que a pessoa participou
+export function getPersonCredits(personId) {
+  return tmdbFetch(`/person/${personId}/combined_credits`);
+}
+
 
 export function posterUrl(path, size = "w342") {
   if (!path) return null;

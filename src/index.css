@@ -1,0 +1,3179 @@
+:root {
+  color-scheme: dark;
+
+  /* Paleta vibrante: rosa, roxo, laranja e azul */
+  --bg: #100d1d;
+  --surface: #211a31;
+  --surface-soft: #2b2140;
+  --text: #fff7fc;
+  --muted: #b9adc7;
+
+  --accent: #ff3f9f;
+  --accent-purple: #9d5cff;
+  --accent-orange: #ff8a4c;
+  --accent-blue: #43c7ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+
+  background-image:
+  linear-gradient(
+    rgba(12, 7, 25, 0.18),
+    rgba(9, 10, 28, 0.38)
+  ),
+  url("./assets/background-home.png");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  color: var(--text);
+  font-family: system-ui, sans-serif;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: rgba(25, 18, 40, 0.92);
+  border-bottom: 1px solid rgba(255, 63, 159, 0.16);
+  backdrop-filter: blur(12px);
+}
+
+.navbar a {
+  color: var(--text);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+}
+
+.app-content {
+  padding: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* =====================================================
+   HERO CAROUSEL (coverflow com auto-play) - cores GTA VI
+===================================================== */
+
+.hero-carousel {
+  position: relative;
+  margin: 1rem 0 2.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1.5rem;
+}
+
+.hero-carousel__glow {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 900px;
+  height: 380px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 63, 159, 0.32) 0%,
+    rgba(157, 92, 255, 0.22) 35%,
+    rgba(255, 138, 76, 0.12) 60%,
+    transparent 75%
+  );
+  filter: blur(10px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-carousel__track {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 340px;
+  margin-bottom: 1.4rem;
+}
+
+.hero-carousel__card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 210px;
+  height: 310px;
+  border: none;
+  border-radius: 14px;
+  background-color: var(--surface);
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease, box-shadow 0.4s ease;
+}
+
+.hero-carousel__card--active {
+  width: 250px;
+  height: 340px;
+  box-shadow:
+    0 0 0 3px var(--accent),
+    0 18px 40px rgba(0, 0, 0, 0.75),
+    0 0 45px rgba(255, 63, 159, 0.45);
+}
+
+.hero-carousel__info {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.hero-carousel__info strong {
+  font-size: 1.4rem;
+  background: linear-gradient(90deg, var(--accent), var(--accent-purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-carousel__info span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  font-size: 1rem;
+  color: var(--muted);
+}
+
+.hero-carousel__info span svg {
+  color: gold;
+}
+
+.hero-carousel__controls {
+  position: relative;
+  z-index: 1;
+  margin-top: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+.hero-carousel__nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.9rem;
+  height: 2.9rem;
+  border-radius: 50%;
+  border: none;
+  background: var(--surface-soft, var(--surface));
+  color: var(--text);
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.hero-carousel__nav-btn:hover {
+  background: var(--accent-purple);
+  transform: scale(1.08);
+}
+
+.hero-carousel__details-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.75rem 1.4rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-purple));
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 8px 18px rgba(255, 63, 159, 0.35);
+}
+
+.hero-carousel__dots {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.hero-carousel__dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  border: none;
+  background: var(--muted);
+  opacity: 0.5;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.hero-carousel__dot--active {
+  width: 1.4rem;
+  opacity: 1;
+  background: linear-gradient(90deg, var(--accent), var(--accent-purple));
+}
+
+@media (max-width: 700px) {
+  .hero-carousel__track {
+    height: 260px;
+  }
+
+  .hero-carousel__card {
+    width: 150px;
+    height: 220px;
+  }
+
+  .hero-carousel__card--active {
+    width: 180px;
+    height: 250px;
+  }
+}
+
+.home__search {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: none;
+  margin: 1rem 0;
+  font-size: 1rem;
+}
+
+.home__grid,
+.my-list__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.movie-card {
+  color: var(--text);
+  text-decoration: none;
+  background: var(--surface);
+  border-radius: 8px;
+  overflow: hidden;
+  display: block;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor:pointer;
+}
+
+.movie-card:hover {
+  transform: translateY(-8px) scale(1.04);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.55);
+}
+
+.movie-card img {
+  width: 100%;
+  display: block;
+}
+
+.movie-card__info {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.movie-card__info span {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.title-details__header {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.title-details__header img {
+  width: 220px;
+  border-radius: 8px;
+}
+
+.title-details__actions {
+  display: flex;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.title-details__actions button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.provider-list {
+  list-style: none;
+  display: flex;
+  gap: 0.75rem;
+  padding: 0;
+}
+
+.provider-list li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+}
+
+.provider-list img {
+  width: 40px;
+  border-radius: 8px;
+}
+
+.rating-stars button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: gold;
+  font-size: 1.3rem;
+}
+
+.title-details__review textarea {
+  width: 100%;
+  min-height: 80px;
+  margin-top: 0.5rem;
+  border-radius: 6px;
+  border: none;
+  padding: 0.5rem;
+}
+
+.episode-tracker__seasons {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+  flex-wrap: wrap;
+}
+
+.episode-tracker__seasons button {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--muted);
+  border-radius: 6px;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+}
+
+.episode-tracker__seasons button.active {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.episode-tracker__list {
+  list-style: none;
+  padding: 0;
+}
+
+.my-list__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.my-list__item button {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--muted);
+  border-radius: 6px;
+  padding: 0.3rem;
+  cursor: pointer;
+}
+
+.footer {
+  margin-top: 4rem;
+  padding: 2.5rem 1.5rem 1rem;
+  background: var(--surface);
+  border-top: 1px solid #49365f;
+  color: var(--muted);
+}
+
+.footer__top {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
+  gap: 2rem;
+  padding-bottom: 2rem;
+}
+
+.footer__brand-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text);
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.footer__brand-title svg {
+  color: var(--accent);
+}
+
+.footer__tagline {
+  max-width: 350px;
+  line-height: 1.5;
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.footer__links-title {
+  color: var(--text);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.footer__links a,
+.footer__credits a,
+.footer__github {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer__links a {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.footer__links a:hover,
+.footer__credits a:hover,
+.footer__github:hover {
+  color: var(--accent);
+}
+
+.footer__credits p {
+  line-height: 1.5;
+  margin-top: 0.7rem;
+}
+
+.footer__bottom {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-top: 1rem;
+  border-top: 1px solid #49365f;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.85rem;
+}
+
+.footer__github {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+@media (max-width: 700px) {
+  .footer__top {
+    grid-template-columns: 1fr;
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.home__section {
+  margin-top: 3rem;
+}
+
+.home__section h2 {
+  margin-bottom: 1rem;
+}
+
+.upcoming-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.upcoming-card__date {
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.navbar__link {
+  transition: color 0.2s ease;
+}
+
+.navbar__link:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .navbar__links {
+    gap: 1rem;
+  }
+}
+
+/* =========================
+   COMUNIDADE
+========================= */
+
+.community {
+  max-width: 850px;
+  margin: 0 auto;
+  padding-bottom: 3rem;
+}
+
+.community__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.community__header > svg {
+  font-size: 2rem;
+  color: var(--accent);
+  margin-top: 0.4rem;
+}
+
+.community__header h1 {
+  margin: 0 0 0.5rem;
+  font-size: 2rem;
+}
+
+.community__header p {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* Caixa para publicar */
+
+.community__form {
+  background: var(--surface);
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 3rem;
+}
+
+.community__form h2 {
+  margin-top: 0;
+}
+
+.community__form input,
+.community__form textarea {
+  width: 100%;
+  background: #2b2140;
+  color: var(--text);
+  border: 1px solid #49365f;
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  margin-bottom: 0.8rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.community__form textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.community__form input:focus,
+.community__form textarea:focus {
+  border-color: var(--accent);
+}
+
+/* Estrelas */
+
+.community__rating {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin: 0.5rem 0 1.2rem;
+}
+
+.community__rating span {
+  margin-right: 0.5rem;
+  font-weight: 600;
+}
+
+.community__rating button {
+  background: none;
+  border: none;
+  color: #82728f;
+  font-size: 1.6rem;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.community__rating button.active {
+  color: gold;
+}
+
+.community__rating button:hover {
+  transform: scale(1.2);
+}
+
+/* Botão publicar */
+
+.community__submit {
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.7rem 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.community__submit:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* Publicações */
+
+.community__posts h2 {
+  margin-bottom: 1.2rem;
+}
+
+.community__post {
+  background: var(--surface);
+  border-radius: 12px;
+  padding: 1.3rem;
+  margin-bottom: 1rem;
+  border: 1px solid #2b2140;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.community__post:hover {
+  transform: translateY(-3px);
+  border-color: #624676;
+}
+
+.community__post-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.community__post-top > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.community__post-top span {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.community__post h3 {
+  margin: 1rem 0 0.4rem;
+  color: var(--text);
+}
+
+.community__post p {
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+.community__stars {
+  color: gold;
+  letter-spacing: 2px;
+}
+
+.community__stars span {
+  color: #756683;
+}
+
+/* Lixeira */
+
+.community__delete {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 0.5rem;
+  border-radius: 6px;
+}
+
+.community__delete:hover {
+  color: var(--accent);
+  background: rgba(255, 63, 159, 0.12);
+}
+
+.community__empty {
+  color: var(--muted);
+  background: var(--surface);
+  padding: 1.5rem;
+  border-radius: 10px;
+}
+
+/* Celular */
+
+@media (max-width: 600px) {
+  .community__header h1 {
+    font-size: 1.6rem;
+  }
+
+  .community__form {
+    padding: 1rem;
+  }
+}
+
+/* =========================
+   BUSCA DE FILMES - COMUNIDADE
+========================= */
+
+.community__movie-search {
+  position: relative;
+}
+
+.community__suggestions {
+  position: absolute;
+  top: calc(100% - 0.8rem);
+  left: 0;
+  right: 0;
+  z-index: 20;
+
+  background: #211a31;
+  border: 1px solid #49365f;
+  border-radius: 8px;
+  overflow: hidden;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.community__suggestion {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+
+  padding: 0.6rem;
+  border: none;
+  border-bottom: 1px solid #49365f;
+
+  background: #211a31;
+  color: var(--text);
+
+  text-align: left;
+  cursor: pointer;
+}
+
+.community__suggestion:last-child {
+  border-bottom: none;
+}
+
+.community__suggestion:hover {
+  background: #35264a;
+}
+
+.community__suggestion img {
+  width: 45px;
+  height: 65px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.community__suggestion > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.community__suggestion strong {
+  font-size: 0.95rem;
+}
+
+.community__suggestion span {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.community__no-poster {
+  width: 45px;
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #49365f;
+  color: var(--muted);
+
+  border-radius: 5px;
+  font-size: 0.65rem;
+  text-align: center;
+}
+
+.community__selected {
+  color: #63d471;
+  font-size: 0.9rem;
+  margin: -0.3rem 0 1rem;
+}
+
+/* =========================
+   CAPA DENTRO DA PUBLICAÇÃO
+========================= */
+
+.community__post-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+
+.community__post-poster {
+  width: 95px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.community__post-content h3 {
+  margin: 0 0 0.5rem;
+}
+
+.community__post-content p {
+  margin-top: 0.8rem;
+}
+
+@media (max-width: 500px) {
+  .community__post-content {
+    flex-direction: column;
+  }
+
+  .community__post-poster {
+    width: 110px;
+    height: 160px;
+  }
+}
+
+/* =========================
+   CURTIDAS DA COMUNIDADE
+========================= */
+
+.community__like-area {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.community__like {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+
+  background: transparent;
+  color: var(--muted);
+
+  border: 1px solid #624676;
+  border-radius: 20px;
+
+  padding: 0.45rem 0.8rem;
+
+  font-size: 0.85rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.community__like svg {
+  font-size: 1.1rem;
+}
+
+.community__like:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: scale(1.05);
+}
+
+/* Quando estiver curtido */
+
+.community__like.liked {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: rgba(255, 63, 159, 0.14);
+}
+
+.community__like.liked svg {
+  fill: var(--accent);
+  color: var(--accent);
+}
+
+.community__like-area > span {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+/* =========================
+   PÁGINA DE LANÇAMENTOS
+========================= */
+
+.upcoming-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-bottom: 4rem;
+}
+
+.upcoming-page__header {
+  margin-bottom: 2.5rem;
+}
+
+.upcoming-page__header h1 {
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+}
+
+.upcoming-page__header p {
+  color: var(--muted);
+  margin: 0;
+}
+
+.upcoming-page__message {
+  color: var(--muted);
+  padding: 2rem 0;
+}
+
+/* Cada mês */
+
+.upcoming-page__month {
+  margin-top: 3rem;
+}
+
+.upcoming-page__month h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid #49365f;
+}
+
+/* Grade dos filmes */
+
+.upcoming-page__grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(160px, 1fr)
+  );
+  gap: 1.2rem;
+}
+
+/* Card */
+
+.release-card {
+  display: flex;
+  flex-direction: column;
+
+  background: var(--surface);
+  border: 1px solid #3c2d50;
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  color: var(--text);
+  text-decoration: none;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.release-card:hover {
+  transform: translateY(-6px);
+  border-color: #624676;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* IMPORTANTE: controla o tamanho das capas */
+
+.release-card > img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  display: block;
+}
+
+.release-card__no-image {
+  width: 100%;
+  height: 270px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #2b2140;
+  color: var(--muted);
+}
+
+/* Informações */
+
+.release-card__info {
+  padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.release-card__info h3 {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.release-card__date {
+  color: var(--accent);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.release-card__rerelease {
+  display: inline-block;
+
+  color: #ffd166;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.release-card__original {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.release-card__note {
+  color: var(--muted);
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+/* Celular */
+
+@media (max-width: 600px) {
+  .upcoming-page__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .release-card > img,
+  .release-card__no-image {
+    height: 230px;
+  }
+
+  .upcoming-page__header h1 {
+    font-size: 1.6rem;
+  }
+}
+
+/* Relançamentos na Home */
+
+.upcoming-card__rerelease {
+  color: #ffd166;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.upcoming-card__original {
+  color: var(--muted);
+  font-size: 0.75rem;
+  text-align: center;
+}
+/* =========================
+   AJUSTE VISUAL - LANÇAMENTOS HOME
+========================= */
+
+/* Título e botão Ver todos na mesma linha */
+.home__section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1.2rem;
+}
+
+.home__section-header h2 {
+  margin: 0;
+}
+
+/* Botão Ver todos */
+.home__see-all {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--accent);
+  color: #ffffff;
+
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 700;
+
+  padding: 0.55rem 1rem;
+  border-radius: 8px;
+
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.home__see-all:hover {
+  transform: translateX(3px);
+  opacity: 0.9;
+  color: #ffffff;
+}
+
+/* Mantém os cards de lançamento organizados */
+.upcoming-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+/* Informações abaixo da capa */
+.upcoming-card__date,
+.upcoming-card__rerelease,
+.upcoming-card__original {
+  display: block;
+  text-align: center;
+}
+
+/* Data */
+.upcoming-card__date {
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+/* Relançamento */
+.upcoming-card__rerelease {
+  color: #ffd166;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+/* Ano original */
+.upcoming-card__original {
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+/* Celular */
+@media (max-width: 600px) {
+  .home__section-header {
+    gap: 0.8rem;
+  }
+
+  .home__section-header h2 {
+    font-size: 1.15rem;
+  }
+
+  .home__see-all {
+    font-size: 0.75rem;
+    padding: 0.45rem 0.7rem;
+  }
+}
+
+/* =====================================================
+   PÁGINA DE DETALHES
+===================================================== */
+
+.title-details {
+  width: min(1200px, 92%);
+  margin: 0 auto;
+  padding: 2rem 0 4rem;
+}
+
+/* Parte superior */
+
+.title-details__header {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.title-details__header > img {
+  width: 220px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.title-details__main h1 {
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+  font-size: 2rem;
+}
+
+/* Ano, duração, nota etc. */
+
+.title-details__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+  color: var(--muted);
+}
+
+.title-details__meta span {
+  white-space: nowrap;
+}
+
+/* Gêneros */
+
+.title-details__genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.title-details__genres span {
+  background: var(--surface);
+  padding: 0.35rem 0.7rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: var(--text);
+}
+
+/* Sinopse */
+
+.title-details__overview {
+  line-height: 1.6;
+  max-width: 850px;
+  color: var(--text);
+}
+
+/* Botões */
+
+.title-details__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 1.2rem 0;
+}
+
+.title-details__actions button {
+  border: none;
+  background: var(--accent);
+  color: white;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.title-details__actions button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* =====================================================
+   TRAILER
+===================================================== */
+
+.title-details__trailer {
+  margin-top: 3rem;
+}
+
+.title-details__trailer h2 {
+  margin-bottom: 1rem;
+}
+
+.title-details__video {
+  width: 100%;
+  max-width: 900px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #000;
+}
+
+.title-details__video iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* =====================================================
+   ELENCO
+===================================================== */
+
+.title-details__cast {
+  margin-top: 3rem;
+}
+
+.title-details__cast h2 {
+  margin-bottom: 1.2rem;
+}
+
+.title-details__cast-grid {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(110px, 1fr));
+  gap: 1rem;
+}
+
+.cast-card {
+  background: var(--surface);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.cast-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.cast-card img {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+}
+
+.cast-card strong {
+  padding: 0.7rem 0.7rem 0.2rem;
+  font-size: 0.85rem;
+}
+
+.cast-card span {
+  padding: 0 0.7rem 0.8rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.cast-card__no-photo {
+  aspect-ratio: 2 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #2b2140;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+/* =====================================================
+   AVALIAÇÃO E EPISÓDIOS
+===================================================== */
+
+.title-details__review,
+.title-details__episodes {
+  margin-top: 3rem;
+}
+
+.title-details__review textarea {
+  display: block;
+  width: 100%;
+  max-width: 700px;
+  min-height: 110px;
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid #49365f;
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  resize: vertical;
+}
+
+/* =====================================================
+   RESPONSIVO
+===================================================== */
+
+@media (max-width: 1000px) {
+  .title-details__cast-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .title-details__header {
+    grid-template-columns: 1fr;
+  }
+
+  .title-details__header > img {
+    width: min(260px, 100%);
+    margin: 0 auto;
+  }
+
+  .title-details__main h1 {
+    text-align: center;
+  }
+
+  .title-details__cast-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .title-details__video {
+    width: 100%;
+  }
+}
+
+/* Cards do elenco clicáveis */
+
+.cast-card {
+  text-decoration: none;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.cast-card:hover {
+  color: var(--text);
+}
+
+/* =====================================================
+   PÁGINA DO ATOR / ATRIZ
+===================================================== */
+
+.person-details {
+  width: min(1200px, 92%);
+  margin: 0 auto;
+  padding: 2.5rem 0 4rem;
+}
+
+/* Cabeçalho */
+
+.person-details__header {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.person-details__photo {
+  width: 260px;
+  max-height: 390px;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.person-details__no-photo {
+  width: 260px;
+  aspect-ratio: 2 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
+  color: var(--muted);
+  border-radius: 14px;
+}
+
+.person-details__info h1 {
+  font-size: 2.2rem;
+  margin: 0 0 1rem;
+}
+
+.person-details__profession {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.person-details__info p {
+  line-height: 1.6;
+}
+
+.person-details__info h2 {
+  margin-top: 1.8rem;
+}
+
+.person-details__biography {
+  max-width: 800px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* =====================================================
+   FILMES E SÉRIES DO ATOR
+===================================================== */
+
+.person-details__works {
+  margin-top: 3rem;
+}
+
+.person-details__works h2 {
+  margin-bottom: 1.3rem;
+}
+
+.person-details__grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(140px, 1fr));
+  gap: 1.2rem;
+}
+
+/* Card */
+
+.person-work-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  background: var(--surface);
+  border-radius: 12px;
+
+  color: var(--text);
+  text-decoration: none;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.person-work-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+  color: var(--text);
+}
+
+.person-work-card img {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+/* Informações */
+
+.person-work-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.8rem;
+}
+
+.person-work-card__info strong {
+  font-size: 0.9rem;
+  line-height: 1.25;
+}
+
+.person-work-card__info span {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.person-work-card__info small {
+  color: var(--accent);
+  font-size: 0.75rem;
+}
+
+/* =====================================================
+   RESPONSIVO
+===================================================== */
+
+@media (max-width: 1000px) {
+  .person-details__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .person-details__header {
+    grid-template-columns: 1fr;
+  }
+
+  .person-details__photo,
+  .person-details__no-photo {
+    width: min(260px, 100%);
+    margin: 0 auto;
+  }
+
+  .person-details__info h1 {
+    text-align: center;
+  }
+
+  .person-details__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Ícones no lugar dos emojis */
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.section-title svg {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.title-details__meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.title-details__meta svg {
+  color: var(--accent);
+}
+
+.person-details__profession {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.person-details__profession svg {
+  color: var(--accent);
+}
+
+/* =====================================================
+   PADRÃO DE ÍCONES
+===================================================== */
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.section-title svg {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.home__see-all {
+  gap: 0.4rem;
+}
+
+.home__see-all svg {
+  font-size: 1rem;
+}
+
+.upcoming-card__rerelease {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.upcoming-card__rerelease svg {
+  flex-shrink: 0;
+}
+
+/* Ícones da página de lançamentos */
+
+.release-card__rerelease,
+.release-card__date {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.release-card__rerelease svg,
+.release-card__date svg {
+  flex-shrink: 0;
+}
+
+.release-card__rerelease svg {
+  color: #ffd166;
+}
+
+.release-card__date svg {
+  color: var(--accent);
+}
+
+.upcoming-page__header .section-title svg {
+  color: var(--accent);
+}
+
+/* =====================================================
+   ÍCONES DA COMUNIDADE
+===================================================== */
+
+.community__selected {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.community__selected svg {
+  color: #4caf50;
+  flex-shrink: 0;
+}
+
+/* Estrelas para escolher a nota */
+
+.community__rating button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.community__rating button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.community__rating button.active svg {
+  fill: #ffd166;
+  color: #ffd166;
+}
+
+/* Estrelas mostradas nas publicações */
+
+.community__stars {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.community__stars svg {
+  width: 17px;
+  height: 17px;
+}
+
+.community__stars .filled {
+  fill: #ffd166;
+  color: #ffd166;
+}
+
+.community__stars .empty {
+  fill: transparent;
+  color: #756683;
+}
+
+/* =====================================================
+   PALETA NEON SUNSET - AJUSTE FINAL DE CORES
+   Somente cores: sem imagens, personagens ou paisagens
+===================================================== */
+
+::selection {
+  background: rgba(255, 63, 159, 0.35);
+  color: #ffffff;
+}
+
+.home__search {
+  background: rgba(255, 247, 252, 0.96);
+  color: #171126;
+  border: 1px solid rgba(157, 92, 255, 0.24);
+}
+
+.home__search:focus {
+  outline: 2px solid rgba(255, 63, 159, 0.45);
+  outline-offset: 2px;
+}
+
+.movie-card,
+.cast-card,
+.person-work-card,
+.release-card,
+.community__form,
+.community__post,
+.community__empty {
+  border-color: rgba(157, 92, 255, 0.16);
+}
+
+.movie-card:hover,
+.cast-card:hover,
+.person-work-card:hover,
+.release-card:hover,
+.community__post:hover {
+  box-shadow:
+    0 14px 30px rgba(0, 0, 0, 0.34),
+    0 0 24px rgba(255, 63, 159, 0.08);
+}
+
+.navbar__brand svg,
+.navbar__link:hover,
+.footer__brand-title svg,
+.section-title svg,
+.title-details__meta svg,
+.person-details__profession,
+.person-details__profession svg {
+  color: var(--accent);
+}
+
+.home__see-all,
+.community__submit,
+.title-details__actions button,
+.episode-tracker__seasons button.active {
+  background: linear-gradient(135deg, var(--accent), var(--accent-purple));
+}
+
+.home__see-all:hover,
+.community__submit:hover,
+.title-details__actions button:hover {
+  box-shadow: 0 8px 22px rgba(255, 63, 159, 0.22);
+}
+
+.upcoming-card__rerelease,
+.release-card__rerelease,
+.release-card__rerelease svg {
+  color: var(--accent-orange);
+}
+
+.rating-stars button,
+.community__rating button.active,
+.community__rating button.active svg,
+.community__stars .filled {
+  color: #ffc857;
+}
+
+.community__rating button.active svg,
+.community__stars .filled {
+  fill: #ffc857;
+}
+/* =========================================
+   EFEITO VIDRO - FUNDO NEON
+========================================= */
+
+.movie-card,
+.release-card,
+.cast-card,
+.person-work-card {
+  background: rgba(28, 20, 45, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* =====================================================
+   AJUSTE PARA TELA DESKTOP - ZOOM 100%
+===================================================== */
+
+.app-content {
+  width: min(1180px, 92%);
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 1.5rem 0 4rem;
+}
+
+/* Busca */
+
+.home__search {
+  margin: 1.2rem 0;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+}
+
+/* Espaço entre as categorias */
+
+.home__section {
+  margin-top: 2.4rem;
+}
+
+/* Capas dos filmes */
+
+.home__grid {
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.9rem;
+}
+
+/* Títulos das seções */
+
+.home__section h2 {
+  font-size: 1.35rem;
+}
+
+/* Responsividade */
+
+@media (max-width: 1000px) {
+  .home__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .app-content {
+    width: 94%;
+  }
+
+  .home__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* =====================================================
+   TAMANHO FINAL DOS CARDS - DESKTOP
+===================================================== */
+
+.app-content {
+  width: min(1100px, 90%);
+  max-width: 1100px;
+}
+
+/* Grade com 6 filmes */
+.home__grid {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+/* Cards mais compactos */
+.home__grid .movie-card {
+  width: 100%;
+}
+
+/* Poster */
+.home__grid .movie-card img {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+}
+
+/* Informações abaixo do poster */
+.movie-card__info {
+  padding: 0.65rem;
+}
+
+.movie-card__info h3 {
+  font-size: 0.88rem;
+  line-height: 1.2;
+  margin: 0 0 0.25rem;
+}
+
+.movie-card__info p {
+  font-size: 0.76rem;
+  margin: 0;
+}
+
+/* Busca menos alta */
+.home__search {
+  padding: 0.65rem 0.9rem;
+  font-size: 0.9rem;
+}
+
+/* Títulos das categorias */
+.home__section h2 {
+  font-size: 1.25rem;
+}
+
+/* =====================================================
+   AJUSTE FINAL DOS CARDS EM DESKTOP
+===================================================== */
+
+.home__section {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.home__grid {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.home__grid .movie-card img,
+.home__grid .movie-card__no-image {
+  aspect-ratio: 2 / 3;
+  height: auto;
+}
+
+.movie-card__info {
+  min-height: 62px;
+  padding: 0.55rem 0.65rem;
+}
+
+.movie-card__info h3 {
+  font-size: 0.82rem;
+  line-height: 1.2;
+}
+
+.movie-card__info p {
+  font-size: 0.72rem;
+}
+
+/* =====================================================
+   ACABAMENTO FINAL - A ESCOLHA CERTA
+===================================================== */
+
+/* NAVBAR - vidro escuro */
+.navbar {
+  background: rgba(20, 12, 38, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border-bottom: 1px solid rgba(255, 63, 159, 0.25);
+
+  box-shadow:
+    0 6px 25px rgba(0, 0, 0, 0.22);
+
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Links da navbar */
+.navbar__brand,
+.navbar__link {
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.navbar__brand:hover,
+.navbar__link:hover {
+  color: #ff5cad;
+}
+
+.navbar__link:hover {
+  transform: translateY(-1px);
+}
+
+
+/* =====================================================
+   CAMPO DE BUSCA
+===================================================== */
+
+.home__search {
+  background: rgba(255, 255, 255, 0.92);
+
+  border: 1px solid rgba(255, 63, 159, 0.25);
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.18);
+
+  transition:
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.home__search:focus {
+  outline: none;
+
+  border-color: #ff3f9f;
+
+  box-shadow:
+    0 0 0 3px rgba(255, 63, 159, 0.15),
+    0 10px 30px rgba(0, 0, 0, 0.22);
+}
+
+
+/* =====================================================
+   CARDS
+===================================================== */
+
+.movie-card,
+.release-card,
+.cast-card,
+.person-work-card {
+  background: rgba(27, 16, 45, 0.88);
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.22);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+
+/* Hover dos cards */
+
+.movie-card:hover,
+.release-card:hover,
+.cast-card:hover,
+.person-work-card:hover {
+  transform: translateY(-5px);
+
+  border-color: rgba(255, 63, 159, 0.35);
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.35),
+    0 0 18px rgba(255, 63, 159, 0.10);
+}
+
+
+/* =====================================================
+   TÍTULOS DAS SEÇÕES
+===================================================== */
+
+.section-title {
+  text-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.45);
+}
+
+.section-title svg {
+  filter: drop-shadow(
+    0 0 6px rgba(255, 63, 159, 0.35)
+  );
+}
+
+
+/* =====================================================
+   BOTÃO "VER TODOS"
+===================================================== */
+
+.home__see-all {
+  background:
+    linear-gradient(
+      135deg,
+      #ff3f9f,
+      #9d5cff
+    );
+
+  box-shadow:
+    0 6px 18px rgba(157, 92, 255, 0.25);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.home__see-all:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 9px 24px rgba(255, 63, 159, 0.30);
+}
+
+/* =====================================================
+   MINHA LISTA - VISUAL FINAL (abas + overlay)
+===================================================== */
+
+.my-list {
+  width: 100%;
+}
+
+.my-list__header {
+  margin: 1rem 0 1.6rem;
+}
+
+.my-list__header h1 {
+  margin: 0 0 0.4rem;
+  font-size: 2rem;
+}
+
+.my-list__subtitle {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.my-list__tabs {
+  display: flex;
+  gap: 0.7rem;
+  margin-bottom: 1.8rem;
+  flex-wrap: wrap;
+}
+
+.my-list__tab {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.my-list__tab:hover {
+  border-color: rgba(255, 63, 159, 0.4);
+  color: var(--text);
+}
+
+.my-list__tab--active {
+  background: linear-gradient(90deg, var(--accent), var(--accent-purple));
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(255, 63, 159, 0.3);
+}
+
+.my-list__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 3.5rem 1rem;
+  text-align: center;
+  color: var(--muted);
+  border: 1px dashed rgba(255, 255, 255, 0.14);
+  border-radius: 14px;
+}
+
+.my-list__empty svg {
+  font-size: 2.2rem;
+  color: var(--accent-purple);
+}
+
+.my-list__empty-link {
+  margin-top: 0.4rem;
+  padding: 0.6rem 1.3rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-purple));
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+/* Grade fixa: os cards não crescem quando há poucos filmes */
+.my-list__grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.9rem;
+  align-items: start;
+}
+
+.my-list__item {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.my-list__poster {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(27, 16, 45, 0.88);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.my-list__poster:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 63, 159, 0.35);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35), 0 0 18px rgba(255, 63, 159, 0.15);
+}
+
+.my-list__poster img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  height: auto;
+  object-fit: cover;
+}
+
+.my-list__no-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  color: var(--muted);
+  font-size: 0.8rem;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.my-list__rating-badge {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(10, 6, 18, 0.75);
+  font-size: 0.72rem;
+  font-weight: 700;
+  z-index: 1;
+}
+
+.my-list__rating-badge svg {
+  color: gold;
+}
+
+.my-list__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0.6rem;
+  background: linear-gradient(to top, rgba(6, 4, 12, 0.9), transparent 55%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.my-list__poster:hover .my-list__overlay {
+  opacity: 1;
+}
+
+.my-list__remove {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid rgba(255, 63, 159, 0.4);
+  border-radius: 7px;
+  background: rgba(255, 63, 159, 0.14);
+  color: #ff8fc4;
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  justify-content: center;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.my-list__remove:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.my-list__title {
+  display: block;
+  padding: 0.55rem 0.1rem 0;
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+/* Tablet */
+@media (max-width: 1000px) {
+  .my-list__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Celular */
+@media (max-width: 700px) {
+  .my-list__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .my-list__header h1 {
+    font-size: 1.7rem;
+  }
+
+  .my-list__tabs {
+    width: 100%;
+  }
+
+  .my-list__tab {
+    flex: 1;
+    justify-content: center;
+  }
+}
+
+/* =====================================================
+   COMUNIDADE - ACABAMENTO GTA VI
+===================================================== */
+
+.community__post {
+  background: rgba(27, 20, 48, 0.90);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.28),
+    0 0 25px rgba(255, 46, 147, 0.04);
+}
+
+.community__post:hover {
+  border-color: rgba(255, 70, 170, 0.22);
+}
+
+/* Poster da publicação */
+.community__post-poster {
+  border-radius: 10px;
+  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Nome do filme */
+.community__post h3 {
+  color: #fff;
+}
+
+/* Comentário */
+.community__post p {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Botão curtir */
+.community__like {
+  border-color: rgba(255, 62, 157, 0.65);
+  background: rgba(255, 62, 157, 0.08);
+}
+
+.community__like:hover,
+.community__like.liked {
+  background: rgba(255, 62, 157, 0.16);
+  border-color: #ff3e9d;
+}
+
+/* Lixeira mais discreta */
+.community__delete {
+  opacity: 0.7;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.community__delete:hover {
+  opacity: 1;
+  color: #ff4f9f;
+}
+
+/* =====================================================
+   COMUNIDADE - CARDS MAIS COMPACTOS
+===================================================== */
+
+.community__posts {
+  max-width: 1050px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Card da publicação */
+.community__post {
+  padding: 1.25rem 1.5rem;
+  border-radius: 14px;
+}
+
+/* Diminui o espaço interno */
+.community__post-content {
+  gap: 1.2rem;
+  align-items: flex-start;
+}
+
+/* Poster menor */
+.community__post-poster {
+  width: 105px;
+  height: 158px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* Nome da pessoa */
+.community__post-top strong {
+  font-size: 1rem;
+}
+
+/* Data */
+.community__post-top span {
+  font-size: 0.8rem;
+}
+
+/* Nome do filme */
+.community__post h3 {
+  font-size: 1.15rem;
+  margin: 0 0 0.4rem;
+}
+
+/* Comentário */
+.community__post p {
+  font-size: 0.95rem;
+  margin: 0.7rem 0;
+}
+
+/* Estrelas um pouco menores */
+.community__stars svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Botão Curtir menor */
+.community__like {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+}
+
+/* Menos espaço entre uma publicação e outra */
+.community__posts {
+  gap: 1rem;
+}
+/* =====================================================
+   COMUNIDADE - TAMANHO COMPACTO FINAL
+===================================================== */
+
+.community__posts {
+  width: min(900px, 100%);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Cada publicação */
+.community__post {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  border-radius: 14px;
+}
+
+/* Parte superior: nome, data e lixeira */
+.community__post-top {
+  margin-bottom: 0.7rem;
+}
+
+/* Conteúdo */
+.community__post-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+/* Poster bem menor */
+.community__post-poster {
+  width: 85px;
+  height: 128px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+/* Nome da pessoa */
+.community__post-top strong {
+  font-size: 0.95rem;
+}
+
+.community__post-top span {
+  font-size: 0.75rem;
+}
+
+/* Filme */
+.community__post h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1rem;
+}
+
+/* Estrelas */
+.community__stars {
+  gap: 0.12rem;
+}
+
+.community__stars svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Comentário */
+.community__post p {
+  margin: 0.45rem 0 0.65rem;
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+
+/* Curtir */
+.community__like-area {
+  gap: 0.7rem;
+}
+
+.community__like {
+  padding: 0.35rem 0.7rem;
+  font-size: 0.78rem;
+}
+
+/* Espaço entre publicações */
+.community__posts {
+  gap: 0.85rem;
+}
+
+/* Lixeira */
+.community__delete svg {
+  width: 17px;
+  height: 17px;
+}
+/* =====================================================
+   COMUNIDADE - 40% MENOR
+===================================================== */
+
+.community__posts {
+  width: min(600px, 100%);
+  margin-left: auto;
+  margin-right: auto;
+  gap: 0.7rem;
+}
+
+.community__posts > h2 {
+  font-size: 1.35rem;
+  margin-bottom: 1rem;
+}
+
+/* Card */
+.community__post {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+}
+
+/* Cabeçalho do card */
+.community__post-top {
+  margin-bottom: 0.5rem;
+}
+
+.community__post-top strong {
+  font-size: 0.85rem;
+}
+
+.community__post-top span {
+  font-size: 0.7rem;
+}
+
+/* Conteúdo */
+.community__post-content {
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+/* Poster */
+.community__post-poster {
+  width: 60px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* Título do filme */
+.community__post h3 {
+  font-size: 0.9rem;
+  margin: 0 0 0.2rem;
+}
+
+/* Estrelas */
+.community__stars {
+  gap: 0.08rem;
+}
+
+.community__stars svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* Comentário */
+.community__post p {
+  font-size: 0.78rem;
+  line-height: 1.3;
+  margin: 0.3rem 0 0.5rem;
+}
+
+/* Curtir */
+.community__like-area {
+  gap: 0.5rem;
+  font-size: 0.72rem;
+}
+
+.community__like {
+  padding: 0.28rem 0.55rem;
+  font-size: 0.72rem;
+}
+
+/* Lixeira */
+.community__delete svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* =====================================================
+   COMUNIDADE - FORMULÁRIO BEM COMPACTO
+===================================================== */
+
+.community__form {
+  width: min(390px, 90%);
+  margin: 1rem auto 2rem;
+  padding: 0.9rem 1rem;
+
+  border-radius: 12px;
+
+  background: rgba(27, 20, 48, 0.90);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Título */
+.community__form h2 {
+  font-size: 1rem;
+  margin: 0 0 0.7rem;
+}
+
+/* Campos */
+.community__form input,
+.community__form textarea {
+  width: 100%;
+  font-size: 0.75rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: 7px;
+}
+
+/* Nome e busca */
+.community__form input {
+  min-height: 34px;
+}
+
+/* Comentário */
+.community__form textarea {
+  min-height: 65px;
+  max-height: 100px;
+  resize: vertical;
+}
+
+/* Busca */
+.community__movie-search {
+  width: 100%;
+}
+
+/* Nota */
+.community__rating {
+  margin-top: 0.55rem;
+  gap: 0.15rem;
+  font-size: 0.75rem;
+}
+
+.community__rating button {
+  padding: 0.15rem;
+}
+
+.community__rating button svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Filme selecionado */
+.community__selected {
+  font-size: 0.75rem;
+  gap: 0.3rem;
+}
+
+/* Botão publicar */
+.community__submit {
+  width: auto;
+  min-width: 85px;
+
+  padding: 0.4rem 0.75rem;
+  margin-top: 0.55rem;
+
+  font-size: 0.72rem;
+  border-radius: 7px;
+}
+/* DIMINUIR SOMENTE A ALTURA DO FORMULÁRIO DA COMUNIDADE */
+
+.community__form {
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+}
+
+.community__form h2 {
+  margin-bottom: 0.45rem;
+}
+
+.community__form input {
+  min-height: 28px;
+  padding: 0.35rem 0.55rem;
+  margin-bottom: 0.4rem;
+}
+
+.community__form textarea {
+  min-height: 48px;
+  height: 48px;
+  padding: 0.4rem 0.55rem;
+  margin-bottom: 0.35rem;
+}
+
+.community__rating {
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+}
+
+.community__submit {
+  margin-top: 0.3rem;
+  padding: 0.35rem 0.7rem;
+}
+
+/* =====================================================
+   COMUNIDADE - CARDS 30% MENORES
+===================================================== */
+
+.community__posts {
+  width: 70%;
+  max-width: 950px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.community__post {
+  padding: 1rem 1.1rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.community__post-top {
+  margin-bottom: 0.8rem;
+}
+
+.community__post-top strong {
+  font-size: 0.9rem;
+}
+
+.community__post-top span {
+  font-size: 0.75rem;
+}
+
+.community__post-content {
+  gap: 0.9rem;
+}
+
+.community__post-poster {
+  width: 70px;
+  height: 105px;
+  object-fit: cover;
+  border-radius: 7px;
+}
+
+.community__post-content h3 {
+  font-size: 1rem;
+  margin: 0 0 0.25rem;
+}
+
+.community__stars svg {
+  width: 14px;
+  height: 14px;
+}
+
+.community__post-content p {
+  font-size: 0.85rem;
+  margin: 0.45rem 0;
+}
+
+.community__like-area {
+  margin-top: 0.55rem;
+  gap: 0.7rem;
+}
+
+.community__like {
+  padding: 0.35rem 0.7rem;
+  font-size: 0.8rem;
+}
+
+.community__like-area > span {
+  font-size: 0.75rem;
+}
+
+.community__delete {
+  font-size: 0.9rem;
+}
+/* =====================================================
+   PÁGINA DO ATOR - CARDS MAIS COMPACTOS
+===================================================== */
+
+.person-details__works {
+  width: 88%;
+  max-width: 1150px;
+  margin: 2rem auto 0;
+}
+
+.person-details__works h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.person-details__grid {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.person-work-card {
+  border-radius: 9px;
+}
+
+.person-work-card__info {
+  padding: 0.55rem;
+}
+
+.person-work-card__info strong {
+  font-size: 0.78rem;
+  line-height: 1.2;
+}
+
+.person-work-card__info span {
+  font-size: 0.7rem;
+}
+
+.person-work-card__info small {
+  font-size: 0.68rem;
+}
+
+/* =====================================================
+   DETALHES - ELENCO MAIS COMPACTO
+===================================================== */
+
+.title-details__cast {
+  width: 90%;
+  max-width: 1150px;
+  margin: 2rem auto 0;
+}
+
+.title-details__cast h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.title-details__cast-grid {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.cast-card {
+  min-width: 0;
+  border-radius: 9px;
+}
+
+.cast-card img {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+}
+
+.cast-card strong {
+  padding: 0.5rem 0.5rem 0.15rem;
+  font-size: 0.75rem;
+  line-height: 1.2;
+}
+
+.cast-card span {
+  padding: 0 0.5rem 0.55rem;
+  font-size: 0.67rem;
+  line-height: 1.3;
+}
+/* =====================================================
+   QUIZ "O QUE ASSISTIR?" - cores GTA VI
+===================================================== */
+
+.quiz-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  width: 100%;
+  margin: 0 0 1.2rem;
+  padding: 0.85rem 1.2rem;
+  border: 1px solid rgba(255, 63, 159, 0.35);
+  border-radius: 12px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 63, 159, 0.16),
+    rgba(157, 92, 255, 0.16),
+    rgba(255, 138, 76, 0.16)
+  );
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.quiz-banner:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(255, 63, 159, 0.25);
+}
+
+.quiz-banner svg {
+  color: var(--accent-orange);
+  font-size: 1.15rem;
+  flex-shrink: 0;
+}
+
+.quiz-modal__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(6, 4, 12, 0.78);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem;
+  z-index: 100;
+}
+
+.quiz-modal {
+  position: relative;
+  width: min(560px, 100%);
+  max-height: 88vh;
+  overflow-y: auto;
+  padding: 2rem 1.8rem 1.8rem;
+  border-radius: 18px;
+  background: var(--surface);
+  border: 1px solid rgba(255, 63, 159, 0.3);
+  box-shadow: 0 0 60px rgba(157, 92, 255, 0.35);
+}
+
+.quiz-modal__close {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  border: none;
+  background: var(--surface-soft, rgba(255, 255, 255, 0.08));
+  color: var(--text);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quiz-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1.4rem;
+  text-align: center;
+  background: linear-gradient(90deg, var(--accent), var(--accent-purple), var(--accent-orange));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.quiz-modal__progress {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.4rem;
+}
+
+.quiz-modal__step-dot {
+  width: 2rem;
+  height: 0.35rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.quiz-modal__step-dot--active {
+  background: linear-gradient(90deg, var(--accent), var(--accent-purple));
+}
+
+.quiz-modal__question {
+  text-align: center;
+  font-size: 1.15rem;
+  margin: 0 0 1.4rem;
+}
+
+.quiz-modal__options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.quiz-modal__option {
+  padding: 0.85rem 1.1rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  font-size: 0.95rem;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.quiz-modal__option:hover {
+  border-color: var(--accent);
+  background: rgba(255, 63, 159, 0.1);
+  transform: translateX(3px);
+}
+
+.quiz-modal__loading {
+  text-align: center;
+  color: var(--muted);
+  padding: 1.5rem 0;
+}
+
+.quiz-modal__result-title {
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.quiz-modal__results {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.quiz-modal__restart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  margin-top: 1.4rem;
+  padding: 0.7rem;
+  border-radius: 10px;
+  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.quiz-modal__restart:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+@media (max-width: 600px) {
+  .quiz-modal__results {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
